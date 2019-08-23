@@ -1,30 +1,31 @@
 #include <sourcemod>
 #include <multicolors>
 
-public Plugin:myinfo =
+#pragma semicolon 1
+#pragma newdecls required
+
+public Plugin myinfo =
 {
 	name = "Case Opening Prank",
 	author = "Cruze",
 	description = "X opened a case",
-	version = "1.0",
+	version = "1.1",
 };
 
-public OnPluginStart()
+public void OnPluginStart()
 {
 	RegAdminCmd("sm_prank", Prank, ADMFLAG_CHEATS);
 }
 
-public Action:Prank(client, args)
+public Action Prank(int client, int args)
 {
-    new String:szName[MAX_NAME_LENGTH]   
-    GetClientName(client, szName, sizeof(szName)) 
 	if(GetClientTeam(client) == 2)
 	{
-		CPrintToChatAll("{orange}%s{default}  has opened a container and found: \x07Souvenir AWP | Dragon Lore", szName)
+		CPrintToChatAll("{orange}%N{default}  has opened a container and found: {lightred}Souvenir AWP | Dragon Lore", client)
 
 	}
 	else if(GetClientTeam(client) == 3)
 	{
-		CPrintToChatAll("{blue}%s{default} has opened a container and found: \x07Souvenir AWP | Dragon Lore", szName)
+		CPrintToChatAll("{blue}%N{default} has opened a container and found: {lightred}Souvenir AWP | Dragon Lore", client)
 	}
 }
